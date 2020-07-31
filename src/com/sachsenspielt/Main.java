@@ -1,6 +1,10 @@
 package com.sachsenspielt;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -19,32 +23,37 @@ public class Main {
         System.out.println("#########################");
         System.out.println(" ");
 
-        int[] Fields = new int[9];
+        int Fields[] = new int[9];
 
         Fields[0] = 0;
-        Fields[1] = 0;
-        Fields[2] = 0;
-        Fields[3] = 0;
-        Fields[4] = 0;
-        Fields[5] = 0;
-        Fields[6] = 0;
-        Fields[7] = 0;
-        Fields[8] = 0;
+        Fields[1] = 1;
+        Fields[2] = 2;
+        Fields[3] = 3;
+        Fields[4] = 4;
+        Fields[5] = 5;
+        Fields[6] = 6;
+        Fields[7] = 7;
+        Fields[8] = 8;
         init(Fields);
+
+
 
     }
 
     public static void init(int[] Fields) throws IOException {
         //Init
 
+        System.out.println("The playground: (Numbers represent the Field ID)");
         playground(Fields);
+        System.out.println(" ");
         System.out.println("It`s Player one's turn!");
+
+        Arrays.fill(Fields, 0);
         turnPlayerOne(Fields);
     }
 
     public static void turnPlayerOne(int[] Fields) throws IOException {
 
-        int player = 1;
         Scanner in = new Scanner(System.in);
         int input = in.nextInt();
 
@@ -61,6 +70,8 @@ public class Main {
         Fields[input] = 1;
 
         //Checking Winner?
+
+        int player = 1;
         checkWinner(player, Fields);
 
         playground(Fields);
@@ -70,7 +81,6 @@ public class Main {
 
     public static void turnPlayerTwo(int[] Fields) throws IOException {
 
-        int player = 2;
         Scanner in = new Scanner(System.in);
         int input = in.nextInt();
 
@@ -84,11 +94,12 @@ public class Main {
             turnPlayerTwo(Fields);
         }
 
-        Fields[input] = 2;
-
         //Checking Winner?
+
+        int player = 2;
         checkWinner(player, Fields);
 
+        Fields[input] = 2;
         playground(Fields);
         System.out.println("It`s Player one's turn!");
         turnPlayerOne(Fields);
@@ -103,53 +114,48 @@ public class Main {
     }
 
     public static void checkWinner(int player, int[] Fields) {
-
-        int winner;
-        System.out.println("Checking winner... [" + player + "]");
-
         if(Fields[0] == player && Fields[1] == player && Fields[2] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[3] == player && Fields[4] == player && Fields[5] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[6] == player && Fields[7] == player && Fields[8] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[0] == player && Fields[3] == player && Fields[6] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[1] == player && Fields[4] == player && Fields[7] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[2] == player && Fields[5] == player && Fields[8] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[0] == player && Fields[4] == player && Fields[8] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
 
         if(Fields[2] == player && Fields[4] == player && Fields[6] == player) {
-            winner = player;
-            funcWinner(winner, Fields);
+            int winner = player;
+            winner(winner, Fields);
         }
-
     }
 
-    public static void funcWinner(int winner, int[] Fields) {
+    public static void winner(int winner, int[] Fields) {
         playground(Fields);
         System.out.println("Player " + winner + " win!");
         System.exit(0);
