@@ -1,10 +1,17 @@
 package de.sachsenspielt.tictactoe;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+
+    private static JFrame frame = new JFrame();
+    public static int width = 650;
+    public static int height = 900;
+    public static int[] Fields = new int[9];
 
     public static void main(String[] args) throws IOException {
 
@@ -20,7 +27,11 @@ public class Main {
         System.out.println("#########################");
         System.out.println(" ");
 
-        int[] Fields = new int[9];
+        init(Fields);
+
+    }
+
+    public static void init(int[] Fields) throws IOException {
 
         Fields[0] = 0;
         Fields[1] = 1;
@@ -31,12 +42,25 @@ public class Main {
         Fields[6] = 6;
         Fields[7] = 7;
         Fields[8] = 8;
-        init(Fields);
 
-    }
-
-    public static void init(int[] Fields) throws IOException {
         //Init
+        ImageIcon icon = new ImageIcon("icon.png");
+        Draw d = new Draw();
+
+        frame.setIconImage(icon.getImage());
+        frame.setTitle("Tic Tac Toe by Sachsenspielt");
+        frame.setBounds(0, 0, width, height);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
+        frame.getContentPane().setBackground(Color.WHITE);
+
+        d.setVisible(true);
+        d.setBounds(0, 0, width, height);
+        frame.add(d);
+
+        frame.setVisible(true);
 
         System.out.println("The playground: (Numbers represent the Field ID)");
         playground(Fields);
@@ -45,6 +69,7 @@ public class Main {
 
         Arrays.fill(Fields, 0);
         turnPlayerOne(Fields);
+
     }
 
     public static void turnPlayerOne(int[] Fields) throws IOException {
