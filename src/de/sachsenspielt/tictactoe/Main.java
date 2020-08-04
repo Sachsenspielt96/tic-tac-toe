@@ -1,9 +1,6 @@
-package com.sachsenspielt;
+package de.sachsenspielt.tictactoe;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -23,7 +20,7 @@ public class Main {
         System.out.println("#########################");
         System.out.println(" ");
 
-        int Fields[] = new int[9];
+        int[] Fields = new int[9];
 
         Fields[0] = 0;
         Fields[1] = 1;
@@ -35,8 +32,6 @@ public class Main {
         Fields[7] = 7;
         Fields[8] = 8;
         init(Fields);
-
-
 
     }
 
@@ -114,43 +109,45 @@ public class Main {
     }
 
     public static void checkWinner(int player, int[] Fields) {
+        int winner;
+
         if(Fields[0] == player && Fields[1] == player && Fields[2] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[3] == player && Fields[4] == player && Fields[5] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[6] == player && Fields[7] == player && Fields[8] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[0] == player && Fields[3] == player && Fields[6] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[1] == player && Fields[4] == player && Fields[7] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[2] == player && Fields[5] == player && Fields[8] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[0] == player && Fields[4] == player && Fields[8] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
 
         if(Fields[2] == player && Fields[4] == player && Fields[6] == player) {
-            int winner = player;
+            winner = player;
             winner(winner, Fields);
         }
     }
