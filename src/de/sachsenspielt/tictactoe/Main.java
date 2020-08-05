@@ -3,6 +3,7 @@ package de.sachsenspielt.tictactoe;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -116,10 +117,11 @@ public class Main {
 
         //Checking Winner?
 
+        Fields[input] = 2;
+
         int player = 2;
         checkWinner(player, Fields);
 
-        Fields[input] = 2;
         playground(Fields);
         System.out.println("It`s Player one's turn!");
         turnPlayerOne(Fields);
