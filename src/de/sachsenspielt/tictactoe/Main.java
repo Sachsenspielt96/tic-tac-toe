@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static JFrame frame = new JFrame();
     public static int width = 650;
     public static int height = 900;
     public static int[] Fields = new int[9];
+    public static int player;
 
     public static void main(String[] args) throws IOException {
 
@@ -22,7 +22,7 @@ public class Main {
         System.out.println("Tic Tac Toe");
         System.out.println("#########################");
         System.out.println("Author: Sachsenspielt");
-        System.out.println("Version: v1.0");
+        System.out.println("Version: v1.2");
         System.out.println("Language: Java");
         System.out.println("©2020");
         System.out.println("#########################");
@@ -34,6 +34,7 @@ public class Main {
 
     public static void init(int[] Fields) throws IOException {
 
+
         Fields[0] = 0;
         Fields[1] = 1;
         Fields[2] = 2;
@@ -44,24 +45,6 @@ public class Main {
         Fields[7] = 7;
         Fields[8] = 8;
 
-        //Init
-        ImageIcon icon = new ImageIcon("icon.png");
-        Draw d = new Draw();
-
-        frame.setIconImage(icon.getImage());
-        frame.setTitle("Tic Tac Toe by Sachsenspielt");
-        frame.setBounds(0, 0, width, height);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLayout(null);
-        frame.setLocationRelativeTo(null);
-        frame.getContentPane().setBackground(Color.WHITE);
-
-        d.setVisible(true);
-        d.setBounds(0, 0, width, height);
-        frame.add(d);
-
-        frame.setVisible(true);
 
         System.out.println("The playground: (Numbers represent the Field ID)");
         playground(Fields);
@@ -92,7 +75,7 @@ public class Main {
 
         //Checking Winner?
 
-        int player = 1;
+        player = 1;
         checkWinner(player, Fields);
 
         playground(Fields);
@@ -119,7 +102,7 @@ public class Main {
 
         Fields[input] = 2;
 
-        int player = 2;
+        player = 2;
         checkWinner(player, Fields);
 
         playground(Fields);
@@ -135,7 +118,7 @@ public class Main {
         System.out.println(Fields[6] + "|" + Fields[7] + "|" + Fields[8]);
     }
 
-    public static void checkWinner(int player, int[] Fields) {
+    public static void checkWinner(int player, int[] Fields) throws IOException {
         int winner;
 
         if(Fields[0] == player && Fields[1] == player && Fields[2] == player) {
@@ -179,9 +162,21 @@ public class Main {
         }
     }
 
-    public static void winner(int winner, int[] Fields) {
+    public static void winner(int winner, int[] Fields) throws IOException {
+        Scanner input = new Scanner(System.in);
+
         playground(Fields);
         System.out.println("Player " + winner + " win!");
-        System.exit(0);
+        System.out.println(" ");
+        System.out.println("For restart type 'restart'!");
+
+        String in = input.nextLine();
+
+        if (in.toLowerCase().equals("restart")) {
+            init(Fields);
+            return;
+        } else {
+            System.exit(0);
+        }
     }
 }
